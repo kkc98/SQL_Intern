@@ -1,3 +1,4 @@
+--This is the main code structure I used during internship and I modified this accordingly to differnt datasets and needs. 
 /* 
 The provided SQL query utilizes a Common Table Expression (CTE) named "ProductPairs" to identify and count pairs of products that were frequently purchased together within a specified date range. 
 It achieves this by selecting product IDs from a "Product" table, creating pairs through self-joins, filtering for transactions between May 30, 2023, and June 1, 2023, 
@@ -22,3 +23,4 @@ The provided SQL query retrieves and displays data from the "ProductPairs" Commo
 It selects the "product1," "product2," and "frequency" columns from the CTE and orders the results in descending order based on the "frequency" column.
 This arrangement will show the pairs of products with the highest co-purchase frequencies at the top, allowing for easy identification of the most frequently bought together products.  
 */
+--

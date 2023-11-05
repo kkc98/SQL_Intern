@@ -1,0 +1,24 @@
+/* 
+The provided SQL query utilizes a Common Table Expression (CTE) named "ProductPairs" to identify and count pairs of products that were frequently purchased together within a specified date range. 
+It achieves this by selecting product IDs from a "Product" table, creating pairs through self-joins, filtering for transactions between May 30, 2023, and June 1, 2023, 
+grouping the results by the product IDs of the paired products, and retaining only pairs that occurred at least twice.
+The result set displays pairs of products and the frequency of their co-purchase occurrences. 
+This query helps businesses understand which products are commonly bought together, offering valuable insights for marketing, bundling, and recommendations.
+*/
+WITH ProductPairs AS (  SELECT a.Product_id AS product1, b.Product_id AS product2, COUNT(*) AS frequency  FROM Product a  
+JOIN Product b ON a.Customer_id = b.Customer_id AND a.Product_id < b.Product_id 
+WHERE a.Date BETWEEN '2023-05-30' AND '2023-06-01'  
+GROUP BY a.Product_id, b.Product_id  
+HAVING COUNT(*) >= 2)
+
+/* 
+ This query identifies pairs of products that were frequently purchased together between May 30, 2023, and June 1, 2023.   
+*/
+
+SELECT product1, product2, frequency FROM ProductPairs ORDER BY frequency DESC;
+
+/* 
+The provided SQL query retrieves and displays data from the "ProductPairs" Common Table Expression (CTE).
+It selects the "product1," "product2," and "frequency" columns from the CTE and orders the results in descending order based on the "frequency" column.
+This arrangement will show the pairs of products with the highest co-purchase frequencies at the top, allowing for easy identification of the most frequently bought together products.  
+*/
